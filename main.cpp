@@ -17,7 +17,7 @@
 
 typedef int Conjunto;
 
-void Union(Conjunto *, Conjunto *, Conjunto *);
+void Union(Conjunto *, Conjunto *, Conjunto *,int ,int);
 
 //using namespace std;
 
@@ -26,41 +26,43 @@ void Union(Conjunto *, Conjunto *, Conjunto *);
  */
 int main(int argc, char** argv) {
 
-    int i, j[]={1,2,3,4,5}, k=0;
-    Conjunto miConjunto[]={1,2,3,4,5};
+    int i;
+    Conjunto miConjunto[]={1,2,3,4,5,23,12,88};
     Conjunto otroConjunto[]={6,7,8,9,0};
-    Conjunto nuevo[10]={0};
+    Conjunto nuevo[100];
+    int tamanioMiConjunto=sizeof(miConjunto)/sizeof(miConjunto[0]);
+    int tamanioOtroConjunto=sizeof(otroConjunto)/sizeof(otroConjunto[0]);
     
     printf("Se unira miConjunto=");
-    for(i=0;i<sizeof(miConjunto)/sizeof(miConjunto[0]);i++)
+    for(i=0;i<tamanioMiConjunto;i++)
         printf("%d", miConjunto[i]);
     puts("");
     puts("Con");
     printf("otroConjunto=");
-    for(i=0;i<sizeof(otroConjunto)/sizeof(otroConjunto[0]);i++)
+    for(i=0;i<tamanioOtroConjunto;i++)
         printf("%d", otroConjunto[i]);
     puts("");
     puts("Solo si ambos tienen contenido\n");
     
     if(miConjunto!=NULL && otroConjunto!=NULL){
-        Union(miConjunto, otroConjunto, nuevo);
-        puts("El nuevo conjunto es:");
-        for(i=0;i<10;i++){
-            printf("%d", nuevo[i]);
+        Union(miConjunto, otroConjunto, nuevo, tamanioMiConjunto, tamanioOtroConjunto);
+        printf("El nuevo conjunto es:");
+        for(i=0;i<tamanioOtroConjunto+tamanioMiConjunto;i++){
+            printf("%d,", nuevo[i]);
         }
     }
     getch();
     return 0;
 }
 
-void Union(Conjunto *miConjunto, Conjunto *otroConjunto, Conjunto *nuevo){
+void Union(Conjunto *miConjunto, Conjunto *otroConjunto, Conjunto *nuevo, int tamanioMiConjunto, int tamanioOtroConjunto){
 	int i;
         
-	for(i=0;i<5;i++){
+	for(i=0;i<tamanioMiConjunto;i++){
             nuevo[i]=miConjunto[i];
 	}
-        for(i=5;i<10;i++){
-            nuevo[i]=otroConjunto[i-5];
+        for(i=tamanioMiConjunto;i<tamanioOtroConjunto+tamanioMiConjunto;i++){
+            nuevo[i]=otroConjunto[i-tamanioMiConjunto];
         }
            
 }
