@@ -44,27 +44,23 @@ int main(int argc, char** argv) {
     
     if(miConjunto!=NULL && otroConjunto!=NULL){
         Union(miConjunto, otroConjunto, nuevo);
-        //puts("El nuevo conjunto es:");
-        /*for(i=0;i<10;i++){
-            //printf("%d", nuevo[i]);
-        }*/
+        puts("El nuevo conjunto es:");
+        for(i=0;i<10;i++){
+            printf("%d", nuevo[i]);
+        }
     }
     getch();
     return 0;
 }
 
 void Union(Conjunto *miConjunto, Conjunto *otroConjunto, Conjunto *nuevo){
-	int i=0, j=0, k=0;
+	int i;
         
-	for(i=0;i<5;i++ ){
+	for(i=0;i<5;i++){
             nuevo[i]=miConjunto[i];
 	}
-        for(j=5;j<10;j++){
-            nuevo[j]=otroConjunto[j];
-        }
-        
-	for(k=0;k<10;k++){
-            printf("%d", nuevo[i]);
+        for(i=5;i<10;i++){
+            nuevo[i]=otroConjunto[i-5];
         }
            
 }
